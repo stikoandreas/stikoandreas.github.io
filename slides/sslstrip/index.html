@@ -1,0 +1,41 @@
+---
+layout: slides
+title: SSLStrip
+---
+
+# SSLStrip
+Andreas Persson
+
+.footnote[ET1490 Nätverkssäkerhet 2]
+???
+
+---
+
+# About SSLStrip
+A Man-in-the-middle protocol downgrade attack tool from 2009.
+
+* Intercepts starting HTTPS connections between client and server.
+
+* Tricks client into using insecure connection for sensitive data.
+
+* Logs intercepted traffic.
+
+---
+
+# Results
+
+Running on my home network, I managed to
+
+* Sniff user credentials in plaintext.
+    - From previously secure connections!
+
+* Intercepted user data from 3 sites.
+
+![:scale 50%](browsers_censored.png)
+
+---
+
+# Solution
+
+
+---

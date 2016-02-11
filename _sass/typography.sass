@@ -1,0 +1,12 @@
+=font-src-wrapper($handle,$name)
+    font-family: $handle
+    src: url('fonts/'+$name+'-webfont.eot')
+    src:    url('fonts/'+$name+'-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/'+$name+'-webfont.woff2') format('woff2'), url('fonts/'+$name+'-webfont.woff') format('woff'), url('fonts/'+$name+'-webfont.ttf') format('truetype'), url('fonts/'+$name+'-webfontlol.svg#'+$handle) format('svg')
+    font-weight: normal
+    font-style: normal
+
+@font-face
+    +font-src-wrapper('cmu_serifroman','cmunrm')
+
+@font-face
+    +font-src-wrapper('cmu_sans_serif_demi_condemiCn','cmunssdc')
