@@ -20,22 +20,35 @@ A Man-in-the-middle protocol downgrade attack tool from 2009.
 
 * Logs intercepted traffic.
 
+![:scale 85%](sslstrip.png)
+
 ---
 
 # Results
 
 Running on my home network, I managed to
 
-* Sniff user credentials in plaintext.
-    - From previously secure connections!
+* sniff user credentials in plaintext
+    - from previously secure connections!
 
-* Intercepted user data from 3 sites.
+* intercept user data from 3 sites.
 
-![:scale 50%](browsers_censored.png)
+
+```2016-02-09 16:15:28,376 SECURE POST Data (---.com):
+    username=user&password=sniffable```
+
+```2016-02-09 16:17:10,110 SECURE POST Data (---.com):
+    &ctl00%24ContentPlaceHolder1%24Username%24input=user
+    &ctl00%24ContentPlaceHolder1%24Password%24input=sniffable```
+
+```2016-02-09 16:18:29,310 SECURE POST Data (---.com):
+    &email=user&password=sniffable&rememberMe=on```
 
 ---
 
-# Solution
+# 
+
+![:scale 50%](browsers_censored.png)
 
 
 ---
