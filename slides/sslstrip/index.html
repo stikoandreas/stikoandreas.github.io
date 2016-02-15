@@ -20,7 +20,7 @@ A Man-in-the-middle protocol downgrade attack tool from 2009.
 
 * Logs intercepted traffic.
 
-![:scale 85%](sslstrip.png)
+![:scale 85%](sslstrip2.png)
 
 ---
 
@@ -31,24 +31,53 @@ Running on my home network, I managed to
 * sniff user credentials in plaintext
     - from previously secure connections!
 
-* intercept user data from 3 sites.
+* intercept user credentials from 3 active sites.
+
+&nbsp;
 
 
 ```2016-02-09 16:15:28,376 SECURE POST Data (---.com):
     username=user&password=sniffable```
 
 ```2016-02-09 16:17:10,110 SECURE POST Data (---.com):
-    &ctl00%24ContentPlaceHolder1%24Username%24input=user
-    &ctl00%24ContentPlaceHolder1%24Password%24input=sniffable```
+    [...]Username%24input=user
+    [...]Password%24input=sniffable```
 
 ```2016-02-09 16:18:29,310 SECURE POST Data (---.com):
-    &email=user&password=sniffable&rememberMe=on```
+    &email=user&password=sniffable``
 
 ---
 
-# 
+# Mitigation (HSTS)
 
-![:scale 50%](browsers_censored.png)
+HSTS (HTTP Strict Transport Security)
 
+* Introduced to mitigate SSLStrip
+
+* A special responce header field
+
+* Declares that a web server will *always* use HTTPS in the future
+
+Note that
+
+* it's not always used
+
+* it needs to be preloaded in the browser
+    - or an attacker can intercept the first HSTS message
+
+*Be specific about requesting HTTPS!*
 
 ---
+
+# Summary
+
+* SSLStrip can easily intercept HTTPS traffic
+
+    - invisibly for the server
+    - discreetly for the client
+
+* HSTS can mitigate the attack
+
+    - preferably preloaded
+
+* Make sure your connections are encrypted on open networks
