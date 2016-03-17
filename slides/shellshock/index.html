@@ -1,0 +1,92 @@
+---
+layout: slides
+title: Shellshock
+---
+
+# Shellshock
+Andreas Persson och Oskar Edbro
+
+ET1490 Nätverkssäkerhet 2
+
+---
+
+# About Shellshock
+
+An *Arbitrary Code Execution*-vulnerability
+
+* Introduced 1989, discovered 2014
+
+* Parser-bug
+- Bash executed trailing code after function definitions
+
+```bash
+VAR=() { ignored; }; /bin/id
+```
+
+Malicious code can be injected into environment variables!
+
+???
+
+Introduced: 5 august 1989
+
+Discovered: 12 semptember 2014
+
+---
+
+# Shellshock and HTTP
+
+* HTTP header fields are often stored in environment variables
+- which means they are Shellshock vulnerable
+
+* Can be used to run arbritary code through Bash
+- simply by crafting special HTTP headers
+
+* CGI scripts using Bash is a common attack vector
+
+```
+www.example.com/test.cgi:
+```
+```bash
+#!/bin/bash
+
+echo -e "Content-type: text/html\n\n"
+echo "Hello, $HTTP_USER_AGENT"
+```
+
+---
+
+# Exploitation
+
+We exploited the vulnerability in two ways
+
+* Using a Metasploit auxiliary module
+- apache_mod_cgi_bash_env
+
+* Using the **curl** command line tool
+
+```
+curl -A "() { :; }; <payload>" <target-url>
+```
+
+on a server running a vulnerable version of Bash and Debian
+
+???
+
+Bash v4.1.5
+
+Debian v 6.0.10
+
+---
+
+# Mitigation
+
+Mitigated by updating Bash
+
+* The first patches came 12 days after discovery, same day as public release
+- A final patch was released 15 days after discovery
+
+* Bash version 4.3 and onward are not vulnerable
+
+&nbsp;
+
+1.5 million attacks per day were performed when the patch was released
