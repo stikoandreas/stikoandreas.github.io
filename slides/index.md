@@ -3,7 +3,7 @@ layout: default
 title: Slides
 ---
 
-This is a collection of slides I have created for research and educational purposes, hosted here for availability.
+This is a collection of slides I have created for research and educational purposes, as part of my studies.
 
 
 ## Network Security
