@@ -1,0 +1,6 @@
+Get-ChildItem C:\ -Force -recurse |
+Where-Object {$_.CreationTime -ge "2016-04-14 08:42:00" -and $_.CreationTime -le "2016-04-15 08:42:30"} | 
+#Where-Object {$_.lastWriteTime -ge "2016-04-14 08:42:00" -and $_.lastWriteTime -le "2016-04-15 08:42:30"} | 
+Select-Object FullName, CreationTime, LastWriteTime, @{Name="Folder?";Expression={$_ -is [System.IO.DirectoryInfo]}} | 
+Export-Csv 'C:\scans.csv'
+
